@@ -2,10 +2,11 @@
 
 namespace App\Modules\Client\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class ClientRequest extends FormRequest
+class ClientUpdateRequest extends FormRequest
 {
     public function authorize(): true
     {
@@ -24,7 +25,7 @@ class ClientRequest extends FormRequest
         return [
             'user_id' => 'nullable|exists:users,id',
             'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email|unique:clients',
+            'email' => 'nullable|email',
             'first_name' => 'required|string|max:50',
             'last_name' => 'nullable|string|max:50',
             'second_name' => 'nullable|string|max:50',

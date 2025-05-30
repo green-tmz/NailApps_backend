@@ -2,6 +2,7 @@
 
 namespace App\Modules\Client\Http\Resources;
 
+use App\Modules\Master\Http\Resources\MasterResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -11,15 +12,13 @@ class ClientResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => $this->whenLoaded('user'),
             'phone' => $this->phone,
+            'email' => $this->email,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'second_name' => $this->second_name,
-            'birth_date' => $this->birth_date,
-            'preferences' => $this->preferences,
-            'created_at' => Carbon::parse($this->created_at)->format("d.m.Y"),
-            'updated_at' => Carbon::parse($this->updated_at)->format("d.m.Y"),
+            'birth_date' => Carbon::parse($this->birth_date)->format("Y-m-d"),
+            'notes' => $this->notes,
         ];
     }
 }

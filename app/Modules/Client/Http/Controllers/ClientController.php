@@ -3,6 +3,7 @@
 namespace App\Modules\Client\Http\Controllers;
 
 use App\Modules\Client\Http\Requests\ClientRequest;
+use App\Modules\Client\Http\Requests\ClientUpdateRequest;
 use App\Modules\Client\Interfaces\ClientServiceInterface;
 
 class ClientController
@@ -29,7 +30,7 @@ class ClientController
         return $this->clientService->getClientById($id);
     }
 
-    public function update(ClientRequest $request, int $id)
+    public function update(ClientUpdateRequest $request, int $id)
     {
         return $this->clientService->updateClient($request, $id);
     }
