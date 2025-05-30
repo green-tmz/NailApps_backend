@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Modules\Client\Models;
+
+use App\Models\User;
+use App\Modules\Appointment\Models\Appointment;
+use Database\Factories\ClientFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Client extends Model
+{
+    /** @use HasFactory<ClientFactory> */
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'phone',
+        'first_name',
+        'last_name',
+        'second_name',
+        'birth_date',
+        'notes',
+        'preferences',
+    ];
+
+    protected $casts = [
+        'preferences' => 'array',
+        'birth_date' => 'date',
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
+}

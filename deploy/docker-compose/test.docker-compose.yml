@@ -1,0 +1,101 @@
+services:
+
+  server:
+    container_name: nginx_nail_apps_backend
+    image: nginx:alpine
+    working_dir: /application
+    restart: always
+    ports:
+      - "127.0.0.1:85:80"
+    volumes:
+      - ./:/var/www/nail_apps_backend
+      - ./deploy/nginx/conf.d:/etc/nginx/conf.d
+      - /home/nail_apps/projects/laravel/storage:/var/www/nail_apps_backend/storage
+    networks:
+      - nail_apps
+
+  app:
+    container_name: app_nail_apps_backend
+    restart: always
+    build:
+      context: ./deploy/dockerfiles
+      dockerfile: test-alpine.Dockerfile
+      args:
+        WWWUSER: '${WWWUSER:-1000}'
+        WWWGROUP: '${WWWGROUP:-1000}'
+    working_dir: /var/www/nail_apps_backend
+    volumes:
+      - ./:/var/www/nail_apps_backend
+      - ./deploy/php/uploads.ini:/usr/local/etc/php/php.ini
+      - /home/nail_apps/projects/laravel/storage:/var/www/nail_apps_backend/storage
+    networks:
+      - nail_apps
+
+  supervisor:
+    container_name: supervisor_nail_apps_backend
+    restart: always
+    build:
+      context: ./deploy/dockerfiles
+      dockerfile: test-supervisor-alpine.Dockerfile
+      args:
+        WWWUSER: '${WWWUSER:-1000}'
+        WWWGROUP: '${WWWGROUP:-1000}'
+    working_dir: /var/www/nail_apps_backend
+    volumes:
+      - ./:/var/www/nail_apps_backend
+      - ./deploy/php/uploads.ini:/usr/local/etc/php/php.ini
+      - /home/nail_apps/projects/laravel/storage:/var/www/nail_apps_backend/storage
+      - ./deploy/supervisor/supervisord.conf:/etc/supervisord.conf
+    networks:
+      - nail_apps
+    command:
+      - /usr/bin/supervisord
+
+  pgsql:
+    restart: always
+    container_name: pgsql_nail_apps_backend
+    image: postgres:16.0-alpine
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    volumes:
+      - nail-apps-backend-pgsql-data:/var/lib/postgresql/data
+    ports:
+      - '5336:5432'
+    networks:
+      - nail-apps-backend
+
+  cache:
+    restart: always
+    container_name: cache_nail_apps_backend
+    image: redis:7.2.3
+    volumes:
+      - nail-apps-backend-cache-data:/data
+    ports:
+      - "6354:6379"
+    networks:
+      - nail_apps
+
+  mailhog:
+    restart: always
+    container_name: mailhog_nail_apps_backend
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - 8025:8025
+      - 1025:1025
+    networks:
+      - nail_apps
+
+volumes:
+  nail-apps-backend-pgsql-data:
+    driver: local
+  nail-apps-backend-cache-data:
+    driver: local
+
+networks:
+  nail_apps:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
