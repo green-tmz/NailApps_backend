@@ -3,12 +3,20 @@
 namespace App\Modules\Service\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceRequest extends FormRequest
 {
     public function authorize(): true
     {
         return true;
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'masterId' => Auth::user()->id
+        ]);
     }
 
     public function rules(): array
@@ -19,7 +27,7 @@ class ServiceRequest extends FormRequest
             'description' => 'nullable|string',
             'duration' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
-            'masterId' => 'required|integer|exists:masters,id'
+            'masterId' => 'nullable|integer|exists:masters,id'
         ];
     }
 

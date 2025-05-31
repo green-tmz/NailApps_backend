@@ -5,12 +5,16 @@ namespace App\Modules\Service\Repositories;
 use App\Modules\Service\Interfaces\ServiceRepositoryInterface;
 use App\Modules\Service\Models\Service;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {
     public function getAllWithSpecialization(): Collection
     {
-        return Service::with('specialization')->get();
+        return Service::where('master_service.master_id', '=', Auth::user()->id)
+            ->join('master_service', 'services.id', '=', 'master_service.service_id')
+            ->with('specialization')
+            ->get();
     }
 
     public function create(array $data): Service
