@@ -12,7 +12,7 @@ class ServiceResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'specialization' => new SpecializationResource($this->whenLoaded('specialization')),
+            'specialization' => new SpecializationResource($this->specialization),
             'master' => $this->masters,
             'name' => $this->name,
             'description' => $this->description,
