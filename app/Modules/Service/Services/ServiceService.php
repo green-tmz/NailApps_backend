@@ -51,6 +51,7 @@ class ServiceService implements ServiceServiceInterface
     {
         $service = $this->serviceRepository->getByIdWithSpecialization($id);
         $updateService = $this->serviceRepository->update($service, $request->validated());
+        $updateService->load('specialization');
         return new ServiceResource($updateService);
     }
 
