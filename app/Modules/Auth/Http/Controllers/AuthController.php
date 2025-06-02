@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Http\Controllers;
 
 use App\Modules\Auth\Http\Requests\LoginRequest;
 use App\Modules\Auth\Http\Requests\RegisterRequest;
+use App\Modules\Auth\Http\Resources\RegisterResource;
 use App\Modules\Auth\Interfaces\AuthServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -27,12 +28,12 @@ class AuthController
         return $this->authService->login($request);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         return $this->authService->logout();
     }
 
-    public function me(): JsonResponse
+    public function me()
     {
         return $this->authService->me();
     }

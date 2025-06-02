@@ -17,15 +17,16 @@ class RegisterResource extends JsonResource
     {
         return [
             'token' => $this->user->createToken('api-token')->plainTextToken,
-            'master' => [
+            'user' => [
                 "id" => $this->id,
                 'first_name' => $this->user->first_name,
                 "last_name" => $this->user->last_name,
                 "second_name" => $this->user->second_name,
                 "email" => $this->user->email,
                 "phone" => $this->user->phone,
+                'role' => $this->user->getRoleNames()->first(),
+                'specialization' => SpecializationResource::collection($this->specializations)
             ],
-            'specialization' => SpecializationResource::collection($this->specializations)
         ];
     }
 }

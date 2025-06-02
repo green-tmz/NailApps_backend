@@ -5,6 +5,7 @@ namespace App\Modules\Auth\Services;
 use App\Modules\Auth\Http\Requests\LoginRequest;
 use App\Modules\Auth\Http\Requests\RegisterRequest;
 use App\Modules\Auth\Http\Resources\RegisterResource;
+use App\Modules\Auth\Http\Resources\UserResource;
 use App\Modules\Auth\Interfaces\AuthRepositoryInterface;
 use App\Modules\Auth\Interfaces\AuthServiceInterface;
 use Illuminate\Http\JsonResponse;
@@ -64,14 +65,9 @@ class AuthService implements AuthServiceInterface
         return response()->json(['message' => 'Logged out']);
     }
 
-    public function me(): JsonResponse
+    public function me(): UserResource
     {
-        $user = Auth::user();
-
-        return response()->json([
-            'master' => $user,
-            'permissions' => $user->getAllPermissions()->pluck('name')
-        ]);
+        return new UserResource(Auth::user());
     }
 }
 {
