@@ -70,6 +70,3 @@ class AuthService implements AuthServiceInterface
         return new UserResource(Auth::user());
     }
 }
-{
-
-}
