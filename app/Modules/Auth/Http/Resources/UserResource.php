@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             "email" => $this->email,
             "phone" => $this->phone,
             'role' => $this->getRoleNames()->first(),
+            'permissions' => $this->getAllPermissions()->pluck('name'),
             'specialization' => SpecializationResource::collection($this->master->specializations)
         ];
     }
