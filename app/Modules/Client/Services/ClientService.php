@@ -53,7 +53,7 @@ class ClientService implements ClientServiceInterface
         $client = $this->clientRepository->getByIdWithUser($id);
         if ($client->user->id != Auth::user()->id) {
             return ['message' => 'Ошибка удаления клиента'];
-        };
+        }
         $this->clientRepository->delete($client);
 
         return ['message' => 'Клиент успешно удален'];

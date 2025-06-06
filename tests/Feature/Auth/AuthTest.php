@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -26,13 +25,13 @@ class AuthTest extends TestCase
             "email" => "maria@example.com",
             "phone" => "+79161234566",
             "password" => "password123",
-            "password_confirmation" => "password123"
+            "password_confirmation" => "password123",
         ]);
 
         $response->assertStatus(201);
         $this->assertDatabaseHas('users', [
             'email' => 'maria@example.com',
-            'phone' => '+79161234566'
+            'phone' => '+79161234566',
         ]);
 
         $this->assertTrue(User::where('email', 'maria@example.com')
@@ -77,7 +76,7 @@ class AuthTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJson([
-            'message' => 'Logged out'
+            'message' => 'Logged out',
         ]);
 
         $this->assertDatabaseMissing('personal_access_tokens', [
@@ -102,11 +101,11 @@ class AuthTest extends TestCase
                 'email',
                 'phone',
             ],
-            'permissions'
+            'permissions',
         ]);
         $response->assertJson([
             'master' => $user->toArray(),
-            'permissions' => ['manage-clients']
+            'permissions' => ['manage-clients'],
         ]);
     }
 }

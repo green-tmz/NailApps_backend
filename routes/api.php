@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::group(['prefix' => 'auth'], function() {
+Route::group(['prefix' => 'v1'], function () {
+    Route::group(['prefix' => 'auth'], function () {
         require app_path('Modules/Auth/routes/api.php');
     });
 

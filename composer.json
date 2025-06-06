@@ -72,7 +72,7 @@
             "@rector"
         ],
         "analyze": "vendor/bin/phpstan analyse app --memory-limit=-1",
-        "format": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --allow-risky=yes",
+        "format": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --using-cache=no --allow-risky=yes",
         "rector": "vendor/bin/rector process --clear-cache",
         "rector:dry": "vendor/bin/rector process --clear-cache --dry-run",
         "rector:check": "vendor/bin/rector process --dry-run"

@@ -22,4 +22,3 @@ class SpecializationSeeder extends Seeder
         ]);
     }
 }
-

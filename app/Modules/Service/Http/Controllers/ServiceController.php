@@ -29,7 +29,7 @@ class ServiceController
 
     public function show(int $id)
     {
-        return$this->serviceService->getServiceById($id);
+        return $this->serviceService->getServiceById($id);
     }
 
     public function update(ServiceRequest $request, int $id)

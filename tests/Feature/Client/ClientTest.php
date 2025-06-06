@@ -17,38 +17,38 @@ class ClientTest extends TestCase
         $this->seed(); // Запускает DatabaseSeeder
     }
 
-//    public function test_index_returns_paginated_collection_of_clients_for_authenticated_user()
-//    {
-//        $user = User::factory()->create();
-//        $this->actingAs($user);
-//
-//        Client::factory()->count(20)->create(['user_id' => $user->id]);
-//
-//        $response = $this->getJson('/api/clients');
-//
-//        $response->assertStatus(200)
-//            ->assertJsonStructure([
-//                'data' => [
-//                    '*' => [
-//                        'id',
-//                        'name',
-//                        'phone',
-//                        'email',
-//                        'last_appointment' => [
-//                            'id',
-//                            'start_time',
-//                            'status'
-//                        ]
-//                    ]
-//                ],
-//                'links',
-//                'meta'
-//            ])
-//            ->assertJsonCount(15, 'data');
-//
-//        $this->assertEquals(15, $response->json('meta.per_page'));
-//        $this->assertEquals(2, $response->json('meta.last_page'));
-//    }
+    //    public function test_index_returns_paginated_collection_of_clients_for_authenticated_user()
+    //    {
+    //        $user = User::factory()->create();
+    //        $this->actingAs($user);
+    //
+    //        Client::factory()->count(20)->create(['user_id' => $user->id]);
+    //
+    //        $response = $this->getJson('/api/clients');
+    //
+    //        $response->assertStatus(200)
+    //            ->assertJsonStructure([
+    //                'data' => [
+    //                    '*' => [
+    //                        'id',
+    //                        'name',
+    //                        'phone',
+    //                        'email',
+    //                        'last_appointment' => [
+    //                            'id',
+    //                            'start_time',
+    //                            'status'
+    //                        ]
+    //                    ]
+    //                ],
+    //                'links',
+    //                'meta'
+    //            ])
+    //            ->assertJsonCount(15, 'data');
+    //
+    //        $this->assertEquals(15, $response->json('meta.per_page'));
+    //        $this->assertEquals(2, $response->json('meta.last_page'));
+    //    }
 
     public function test_store_creates_new_client_for_authenticated_user()
     {
@@ -71,7 +71,7 @@ class ClientTest extends TestCase
                     'name',
                     'phone',
                     'email',
-                ]
+                ],
             ]);
 
         $this->assertDatabaseHas('clients', [
@@ -84,32 +84,32 @@ class ClientTest extends TestCase
         $this->assertEquals('Клиент успешно создан', $response->json('message'));
     }
 
-//    public function test_show_returns_client_for_authorized_user_and_denies_for_unauthorized()
-//    {
-//        $user1 = User::factory()->create();
-//        $user2 = User::factory()->create();
-//
-//        $client1 = Client::factory()->create(['user_id' => $user1->id]);
-//        $client2 = Client::factory()->create(['user_id' => $user2->id]);
-//
-//        $this->actingAs($user1);
-//
-//        $response = $this->getJson("/api/v1/clients/{$client1->id}");
-//        $response->assertStatus(200)
-//            ->assertJsonStructure([
-//                'data' => [
-//                    'id',
-//                    'name',
-//                    'phone',
-//                    'email',
-//                    'appointments',
-//                    'notes'
-//                ]
-//            ]);
-//
-//        $response = $this->getJson("/api/v1/clients/{$client2->id}");
-//        $response->assertStatus(403);
-//    }
+    //    public function test_show_returns_client_for_authorized_user_and_denies_for_unauthorized()
+    //    {
+    //        $user1 = User::factory()->create();
+    //        $user2 = User::factory()->create();
+    //
+    //        $client1 = Client::factory()->create(['user_id' => $user1->id]);
+    //        $client2 = Client::factory()->create(['user_id' => $user2->id]);
+    //
+    //        $this->actingAs($user1);
+    //
+    //        $response = $this->getJson("/api/v1/clients/{$client1->id}");
+    //        $response->assertStatus(200)
+    //            ->assertJsonStructure([
+    //                'data' => [
+    //                    'id',
+    //                    'name',
+    //                    'phone',
+    //                    'email',
+    //                    'appointments',
+    //                    'notes'
+    //                ]
+    //            ]);
+    //
+    //        $response = $this->getJson("/api/v1/clients/{$client2->id}");
+    //        $response->assertStatus(403);
+    //    }
 
     public function test_update_persists_client_data_after_subsequent_fetch()
     {
@@ -134,7 +134,7 @@ class ClientTest extends TestCase
                     'name',
                     'phone',
                     'email',
-                ]
+                ],
             ]);
 
         $this->assertEquals('Данные клиента обновлены', $response->json('message'));
@@ -148,7 +148,7 @@ class ClientTest extends TestCase
                     'name' => 'Jane Doe',
                     'phone' => '9876543210',
                     'email' => 'jane@example.com',
-                ]
+                ],
             ]);
     }
 }
