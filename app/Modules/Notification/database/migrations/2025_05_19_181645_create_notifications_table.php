@@ -10,7 +10,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
             $table->string('type');

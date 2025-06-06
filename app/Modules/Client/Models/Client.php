@@ -2,7 +2,7 @@
 
 namespace App\Modules\Client\Models;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Appointment\Models\Appointment;
 use Database\Factories\ClientFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -3,7 +3,7 @@
 use App\Modules\Schedule\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/schedules', [ScheduleController::class, 'index']);
     Route::post('/schedules', [ScheduleController::class, 'store']);
     Route::get('/schedules/{schedule}', [ScheduleController::class, 'show']);

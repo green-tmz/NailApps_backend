@@ -2,7 +2,7 @@
 
 namespace App\Modules\Auth\Repositories;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Auth\Interfaces\AuthRepositoryInterface;
 use App\Modules\Master\Models\Master;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +15,8 @@ class AuthRepository implements AuthRepositoryInterface
             'first_name' => $userData['first_name'],
             'last_name' => $userData['last_name'],
             'second_name' => $userData['second_name'],
-            'email' => $userData['email'],
-            'phone' => $userData['phone'],
+            'email' => ($userData['email']) ?? null,
+            'phone' => $userData['phone'] ?? null,
             'password' => Hash::make($userData['password']),
         ]);
     }

@@ -19,7 +19,7 @@ trait HasFinancials
     public function calculateMaterialCosts($startDate, $endDate)
     {
         return $this->materialUsages()
-            ->whereHas('appointment', function ($query) use ($startDate, $endDate) {
+            ->whereHas('appointment', function ($query) use ($startDate, $endDate): void {
                 $query->whereBetween('start_time', [$startDate, $endDate])
                     ->where('status', 'completed');
             })

@@ -15,19 +15,19 @@ class MaterialController
         return MaterialResource::collection($materials);
     }
 
-    public function store(MaterialRequest $request)
+    public function store(MaterialRequest $request): MaterialResource
     {
         $material = Material::create($request->validated());
 
         return new MaterialResource($material);
     }
 
-    public function show(Material $material)
+    public function show(Material $material): MaterialResource
     {
         return new MaterialResource($material);
     }
 
-    public function update(MaterialRequest $request, Material $material)
+    public function update(MaterialRequest $request, Material $material): MaterialResource
     {
         $material->update($request->validated());
 

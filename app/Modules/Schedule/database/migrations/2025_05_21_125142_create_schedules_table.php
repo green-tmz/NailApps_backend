@@ -10,7 +10,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('master_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('day_of_week'); // 1-7 (Monday-Sunday)

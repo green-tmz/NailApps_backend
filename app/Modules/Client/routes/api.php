@@ -3,7 +3,7 @@
 use App\Modules\Client\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/clients', [ClientController::class, 'index']);
     Route::post('/clients', [ClientController::class, 'store']);
     Route::get('/clients/{client}', [ClientController::class, 'show']);

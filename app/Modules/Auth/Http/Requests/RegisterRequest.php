@@ -5,12 +5,15 @@ namespace App\Modules\Auth\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $second_name
+ */
 class RegisterRequest extends FormRequest
 {
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'second_name' => $this->second_name ? trim($this->second_name) : null,
+            'second_name' => $this->second_name ? trim((string) $this->second_name) : null,
         ]);
     }
 
@@ -32,7 +35,7 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'first_name.required' => 'Поле обязательно для заполнения',

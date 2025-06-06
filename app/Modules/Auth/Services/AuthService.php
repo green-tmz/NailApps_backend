@@ -2,6 +2,7 @@
 
 namespace App\Modules\Auth\Services;
 
+use Exception;
 use App\Modules\Auth\Http\Requests\LoginRequest;
 use App\Modules\Auth\Http\Requests\RegisterRequest;
 use App\Modules\Auth\Http\Resources\RegisterResource;
@@ -15,11 +16,8 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService implements AuthServiceInterface
 {
-    private AuthRepositoryInterface $authRepository;
-
-    public function __construct(AuthRepositoryInterface $authRepository)
+    public function __construct(private readonly AuthRepositoryInterface $authRepository)
     {
-        $this->authRepository = $authRepository;
     }
 
     public function register(RegisterRequest $request): RegisterResource
@@ -35,7 +33,7 @@ class AuthService implements AuthServiceInterface
             DB::commit();
 
             return new RegisterResource($master);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
 
             throw $e;
@@ -62,7 +60,7 @@ class AuthService implements AuthServiceInterface
 
     public function logout(): JsonResponse
     {
-        Auth::user()->currentAccessToken()->delete();
+        Auth::user()->tokens()->delete();
 
         return response()->json(['message' => 'Logged out']);
     }

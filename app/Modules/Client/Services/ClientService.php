@@ -12,11 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientService implements ClientServiceInterface
 {
-    private ClientRepositoryInterface $clientRepository;
-
-    public function __construct(ClientRepositoryInterface $clientRepository)
+    public function __construct(private readonly ClientRepositoryInterface $clientRepository)
     {
-        $this->clientRepository = $clientRepository;
     }
 
     public function getAllClients(): AnonymousResourceCollection

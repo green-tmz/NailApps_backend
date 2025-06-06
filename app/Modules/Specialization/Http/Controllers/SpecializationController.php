@@ -2,39 +2,38 @@
 
 namespace App\Modules\Specialization\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Modules\Specialization\Http\Resources\SpecializationResource;
 use App\Modules\Specialization\Http\Requests\SpecializationRequest;
 use App\Modules\Specialization\Interfaces\SpecializationServiceInterface;
 
 class SpecializationController
 {
-    private SpecializationServiceInterface $specializationService;
-
-    public function __construct(SpecializationServiceInterface $specializationService)
+    public function __construct(private readonly SpecializationServiceInterface $specializationService)
     {
-        $this->specializationService = $specializationService;
     }
 
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return $this->specializationService->getAllSpecializations();
     }
 
-    public function store(SpecializationRequest $request)
+    public function store(SpecializationRequest $request): SpecializationResource
     {
         return $this->specializationService->createSpecialization($request);
     }
 
-    public function show(int $id)
+    public function show(int $id): SpecializationResource
     {
         return $this->specializationService->getSpecializationById($id);
     }
 
-    public function update(SpecializationRequest $request, int $id)
+    public function update(SpecializationRequest $request, int $id): SpecializationResource
     {
         return $this->specializationService->updateSpecialization($request, $id);
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): array
     {
         return $this->specializationService->deleteSpecialization($id);
     }

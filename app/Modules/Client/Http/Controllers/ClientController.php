@@ -2,40 +2,39 @@
 
 namespace App\Modules\Client\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Modules\Client\Http\Resources\ClientResource;
 use App\Modules\Client\Http\Requests\ClientRequest;
 use App\Modules\Client\Http\Requests\ClientUpdateRequest;
 use App\Modules\Client\Interfaces\ClientServiceInterface;
 
 class ClientController
 {
-    private ClientServiceInterface $clientService;
-
-    public function __construct(ClientServiceInterface $clientService)
+    public function __construct(private readonly ClientServiceInterface $clientService)
     {
-        $this->clientService = $clientService;
     }
 
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return $this->clientService->getAllClients();
     }
 
-    public function store(ClientRequest $request)
+    public function store(ClientRequest $request): ClientResource
     {
         return $this->clientService->createClient($request);
     }
 
-    public function show(int $id)
+    public function show(int $id): ClientResource
     {
         return $this->clientService->getClientById($id);
     }
 
-    public function update(ClientUpdateRequest $request, int $id)
+    public function update(ClientUpdateRequest $request, int $id): ClientResource
     {
         return $this->clientService->updateClient($request, $id);
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): array
     {
         return $this->clientService->deleteClient($id);
     }

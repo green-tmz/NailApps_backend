@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Appointment\Models\Appointment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

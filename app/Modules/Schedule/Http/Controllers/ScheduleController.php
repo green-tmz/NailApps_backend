@@ -15,19 +15,19 @@ class ScheduleController
         return ScheduleResource::collection($schedules);
     }
 
-    public function store(ScheduleRequest $request)
+    public function store(ScheduleRequest $request): ScheduleResource
     {
         $schedule = Schedule::create($request->validated());
 
         return new ScheduleResource($schedule->load('master.user'));
     }
 
-    public function show(Schedule $schedule)
+    public function show(Schedule $schedule): ScheduleResource
     {
         return new ScheduleResource($schedule->load('master.user'));
     }
 
-    public function update(ScheduleRequest $request, Schedule $schedule)
+    public function update(ScheduleRequest $request, Schedule $schedule): ScheduleResource
     {
         $schedule->update($request->validated());
 

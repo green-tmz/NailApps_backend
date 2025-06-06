@@ -3,7 +3,7 @@
 use App\Modules\Material\Http\Controllers\MaterialController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/materials', [MaterialController::class, 'index']);
     Route::post('/materials', [MaterialController::class, 'store']);
     Route::get('/materials/{material}', [MaterialController::class, 'show']);

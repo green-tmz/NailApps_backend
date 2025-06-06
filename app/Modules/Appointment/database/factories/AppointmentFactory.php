@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Modules\Appointment\Database\Factories;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Appointment\Models\Appointment;
 use App\Modules\Client\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -40,56 +40,44 @@ class AppointmentFactory extends Factory
 
     public function forMaster(User $master): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) use ($master) {
-            return [
-                'user_id' => $master->id,
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'user_id' => $master->id,
+        ]);
     }
 
     public function forClient(Client $client): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) use ($client) {
-            return [
-                'client_id' => $client->id,
-                'master_id' => $client->master_id,
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'client_id' => $client->id,
+            'master_id' => $client->master_id,
+        ]);
     }
 
     public function scheduled(): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'status' => 'scheduled',
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'status' => 'scheduled',
+        ]);
     }
 
     public function completed(): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'status' => 'completed',
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'status' => 'completed',
+        ]);
     }
 
     public function canceled(): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'status' => 'canceled',
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'status' => 'canceled',
+        ]);
     }
 
     public function deleted(): AppointmentFactory|Factory
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'deleted_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'deleted_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+        ]);
     }
 }

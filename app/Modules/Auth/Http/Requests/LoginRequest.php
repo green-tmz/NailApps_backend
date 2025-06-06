@@ -7,13 +7,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
-    public function prepareForValidation()
+    public function prepareForValidation(): void
     {
         $login = $this->input('login');
 
         $field = filter_var($login, FILTER_VALIDATE_EMAIL)
             ? 'email'
-            : (preg_match('/^[\d\+\(\)\s-]+$/', $login) ? 'phone' : 'name');
+            : (preg_match('/^[\d\+\(\)\s-]+$/', (string) $login) ? 'phone' : 'name');
 
         $this->merge([
             $field => $login,
