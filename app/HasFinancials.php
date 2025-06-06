@@ -2,6 +2,10 @@
 
 namespace App;
 
+/**
+ * @method appointments()
+ * @method materialUsages()
+ */
 trait HasFinancials
 {
     public function calculateIncome($startDate, $endDate)
@@ -15,7 +19,7 @@ trait HasFinancials
     public function calculateMaterialCosts($startDate, $endDate)
     {
         return $this->materialUsages()
-            ->whereHas('appointment', function($query) use ($startDate, $endDate) {
+            ->whereHas('appointment', function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('start_time', [$startDate, $endDate])
                     ->where('status', 'completed');
             })

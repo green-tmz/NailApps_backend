@@ -20,18 +20,21 @@ class SpecializationService implements SpecializationServiceInterface
     public function getAllSpecializations(): AnonymousResourceCollection
     {
         $specializations = $this->specializationRepository->getAllWithServices();
+
         return SpecializationResource::collection($specializations);
     }
 
     public function createSpecialization(SpecializationRequest $request): SpecializationResource
     {
         $specialization = $this->specializationRepository->create($request->validated());
+
         return new SpecializationResource($specialization);
     }
 
     public function getSpecializationById(int $id): SpecializationResource
     {
         $specialization = $this->specializationRepository->getByIdWithServices($id);
+
         return new SpecializationResource($specialization);
     }
 
@@ -39,6 +42,7 @@ class SpecializationService implements SpecializationServiceInterface
     {
         $specialization = $this->specializationRepository->getByIdWithServices($id);
         $updatedSpecialization = $this->specializationRepository->update($specialization, $request->validated());
+
         return new SpecializationResource($updatedSpecialization);
     }
 
@@ -46,6 +50,7 @@ class SpecializationService implements SpecializationServiceInterface
     {
         $specialization = $this->specializationRepository->getByIdWithServices($id);
         $this->specializationRepository->delete($specialization);
+
         return ['message' => 'Специализация успешно удалена'];
     }
 }

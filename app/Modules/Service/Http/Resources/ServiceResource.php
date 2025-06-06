@@ -2,10 +2,20 @@
 
 namespace App\Modules\Service\Http\Resources;
 
-use App\Modules\Master\Http\Resources\MasterResource;
 use App\Modules\Specialization\Http\Resources\SpecializationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $specialization
+ * @property mixed $masters
+ * @property mixed $name
+ * @property mixed $description
+ * @property mixed $duration
+ * @property mixed $price
+ * @property mixed $created_at
+ * @property mixed $updated_at
+ */
 class ServiceResource extends JsonResource
 {
     public function toArray($request): array

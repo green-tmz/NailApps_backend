@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'welcome' => 'Welcome, this is Master module.'
+    'welcome' => 'Welcome, this is Master module.',
 ];

@@ -17,7 +17,7 @@ class LoginRequest extends FormRequest
 
         $this->merge([
             $field => $login,
-            'login_field' => $field
+            'login_field' => $field,
         ]);
     }
 

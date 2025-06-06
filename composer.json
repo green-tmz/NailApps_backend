@@ -19,12 +19,16 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "friendsofphp/php-cs-fixer": "^3.60",
+        "larastan/larastan": "^3.4",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5.3",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -61,7 +65,17 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
-        ]
+        ],
+        "all": [
+            "@analyze",
+            "@format",
+            "@rector"
+        ],
+        "analyze": "vendor/bin/phpstan analyse app --memory-limit=-1",
+        "format": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --allow-risky=yes",
+        "rector": "vendor/bin/rector process --clear-cache",
+        "rector:dry": "vendor/bin/rector process --clear-cache --dry-run",
+        "rector:check": "vendor/bin/rector process --dry-run"
     },
     "extra": {
         "laravel": {

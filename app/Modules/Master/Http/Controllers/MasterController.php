@@ -59,6 +59,7 @@ class MasterController
     public function destroy(Master $master)
     {
         $master->delete();
+
         return response()->json(['message' => 'Master deleted successfully']);
     }
 }

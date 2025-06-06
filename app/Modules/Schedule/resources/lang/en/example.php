@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'welcome' => 'Welcome, this is Schedule module.'
+    'welcome' => 'Welcome, this is Schedule module.',
 ];

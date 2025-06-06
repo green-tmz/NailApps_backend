@@ -42,8 +42,8 @@ class ServiceController
         return $this->serviceService->deleteService($id);
     }
 
-    public  function getBySpecialization(int $id)
+    public function getBySpecialization(int $id): void
     {
-        return $this->serviceService->getBySpecialization($id);
+        return;
     }
 }

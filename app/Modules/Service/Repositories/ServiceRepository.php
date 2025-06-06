@@ -30,6 +30,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     public function update(Service $service, array $data): Service
     {
         $service->update($data);
+
         return $service;
     }
 
@@ -46,6 +47,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     public function attachMaster(Service $service, int $id): Service
     {
         $service->masters()->attach($id);
+
         return $service;
     }
 }

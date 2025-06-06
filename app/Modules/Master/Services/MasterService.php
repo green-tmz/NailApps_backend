@@ -20,18 +20,21 @@ class MasterService implements MasterServiceInterface
     public function getAllMasters(): AnonymousResourceCollection
     {
         $masters = $this->masterRepository->getAllWithRelations();
+
         return MasterResource::collection($masters);
     }
 
     public function createMaster(MasterRequest $request): MasterResource
     {
         $master = $this->masterRepository->create($request->validated());
+
         return new MasterResource($master);
     }
 
     public function getMasterById(int $id): MasterResource
     {
         $master = $this->masterRepository->getByIdWithRelations($id);
+
         return new MasterResource($master);
     }
 
@@ -39,6 +42,7 @@ class MasterService implements MasterServiceInterface
     {
         $master = $this->masterRepository->getByIdWithRelations($id);
         $updatedMaster = $this->masterRepository->update($master, $request->validated());
+
         return new MasterResource($updatedMaster);
     }
 
@@ -46,6 +50,7 @@ class MasterService implements MasterServiceInterface
     {
         $master = $this->masterRepository->getByIdWithRelations($id);
         $this->masterRepository->delete($master);
+
         return ['message' => 'Специализация успешно удалена'];
     }
 }

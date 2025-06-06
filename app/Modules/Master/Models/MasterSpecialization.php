@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class MasterSpecialization extends Model
 {
     protected $fillable = [
-        'master_id', 'specialization_id'
+        'master_id', 'specialization_id',
     ];
 }

@@ -13,5 +13,5 @@ interface ServiceServiceInterface
     public function getServiceById(int $id): ServiceResource;
     public function updateService(ServiceRequest $request, int $id): ServiceResource;
     public function deleteService(int $id): array;
-    public function getBySpecialization(int $id): AnonymousResourceCollection;
+    public function getBySpecialization(int $id): void;
 }

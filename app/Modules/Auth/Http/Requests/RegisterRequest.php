@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'email' => 'nullable|email|unique:users',
             'phone' => 'nullable|string|unique:users',
             'password' => 'required|min:8|confirmed',
-            'specializationId' => 'required|array|exists:specializations,id'
+            'specializationId' => 'required|array|exists:specializations,id',
         ];
     }
 

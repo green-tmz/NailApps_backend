@@ -37,6 +37,7 @@ class AuthService implements AuthServiceInterface
             return new RegisterResource($master);
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -50,7 +51,7 @@ class AuthService implements AuthServiceInterface
             ? $this->authRepository->findMasterByEmail($credentials['email'])
             : $this->authRepository->findMasterByPhone($credentials['phone']);
 
-        if (!$master || !$this->authRepository->validateCredentials($master, $credentials['password'])) {
+        if (! $master || ! $this->authRepository->validateCredentials($master, $credentials['password'])) {
             throw ValidationException::withMessages([
                 'login' => ['Логин или пароль введены не верно.'],
             ]);
@@ -62,6 +63,7 @@ class AuthService implements AuthServiceInterface
     public function logout(): JsonResponse
     {
         Auth::user()->currentAccessToken()->delete();
+
         return response()->json(['message' => 'Logged out']);
     }
 

@@ -26,6 +26,7 @@ class SpecializationRepository implements SpecializationRepositoryInterface
     public function update(Specialization $specialization, array $data): Specialization
     {
         $specialization->update($data);
+
         return $specialization;
     }
 

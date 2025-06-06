@@ -28,7 +28,7 @@ class AppointmentFactory extends Factory
                 'Педикюр',
                 'Наращивание',
                 'Дизайн ногтей',
-                'SPA уход'
+                'SPA уход',
             ]),
             'price' => $this->faker->numberBetween(500, 3000),
             'notes' => $this->faker->optional()->sentence(),

@@ -4,10 +4,7 @@ namespace App\Modules\Auth\Http\Controllers;
 
 use App\Modules\Auth\Http\Requests\LoginRequest;
 use App\Modules\Auth\Http\Requests\RegisterRequest;
-use App\Modules\Auth\Http\Resources\RegisterResource;
 use App\Modules\Auth\Interfaces\AuthServiceInterface;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class AuthController
 {

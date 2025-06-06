@@ -7,6 +7,15 @@ use App\Modules\Master\Http\Resources\MasterResource;
 use App\Modules\Service\Http\Resources\ServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $start_time
+ * @property mixed $end_time
+ * @property mixed $status
+ * @property mixed $notes
+ * @property mixed $created_at
+ * @property mixed $updated_at
+ */
 class AppointmentResource extends JsonResource
 {
     public function toArray($request): array

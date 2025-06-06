@@ -2,9 +2,19 @@
 
 namespace App\Modules\Material\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $name
+ * @property mixed $description
+ * @property mixed $quantity
+ * @property mixed $unit
+ * @property mixed $price
+ * @property mixed $min_threshold
+ * @property mixed $created_at
+ * @property mixed $updated_at
+ */
 class MaterialResource extends JsonResource
 {
     public function toArray($request): array

@@ -6,6 +6,13 @@ use App\Modules\Service\Http\Resources\ServiceResource;
 use App\Modules\Specialization\Http\Resources\SpecializationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $experience
+ * @property mixed $description
+ * @property mixed $created_at
+ * @property mixed $updated_at
+ */
 class MasterResource extends JsonResource
 {
     public function toArray($request): array

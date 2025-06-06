@@ -5,6 +5,15 @@ namespace App\Modules\Schedule\Http\Resources;
 use App\Modules\Master\Http\Resources\MasterResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $day_of_week
+ * @property mixed $start_time
+ * @property mixed $end_time
+ * @property mixed $is_working
+ * @property mixed $created_at
+ * @property mixed $updated_at
+ */
 class ScheduleResource extends JsonResource
 {
     public function toArray($request): array

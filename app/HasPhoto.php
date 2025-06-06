@@ -4,8 +4,13 @@ namespace App;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @method save()
+ */
 trait HasPhoto
 {
+    protected ?string $photo = null;
+
     public function uploadPhoto($file, $folder = 'photos'): static
     {
         if ($this->photo) {

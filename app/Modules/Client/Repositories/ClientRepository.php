@@ -29,6 +29,7 @@ class ClientRepository implements ClientRepositoryInterface
     public function update(Client $client, array $data): Client
     {
         $client->update($data);
+
         return $client;
     }
 

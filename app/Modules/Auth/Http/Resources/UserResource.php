@@ -6,6 +6,17 @@ use App\Modules\Specialization\Http\Resources\SpecializationResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $first_name
+ * @property mixed $last_name
+ * @property mixed $second_name
+ * @property mixed $email
+ * @property mixed $phone
+ * @property mixed $master
+ * @method getRoleNames()
+ * @method getAllPermissions()
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -24,7 +35,7 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'role' => $this->getRoleNames()->first(),
             'permissions' => $this->getAllPermissions()->pluck('name'),
-            'specialization' => SpecializationResource::collection($this->master->specializations)
+            'specialization' => SpecializationResource::collection($this->master->specializations),
         ];
     }
 }

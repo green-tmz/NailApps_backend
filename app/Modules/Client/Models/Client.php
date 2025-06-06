@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed $user_id
+ * @property mixed $id
+ * @property mixed $master_id
+ * @property mixed $user
+ */
 class Client extends Model
 {
     /** @use HasFactory<ClientFactory> */

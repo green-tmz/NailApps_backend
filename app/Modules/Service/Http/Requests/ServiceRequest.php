@@ -15,7 +15,7 @@ class ServiceRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'masterId' => Auth::user()->id
+            'masterId' => Auth::user()->id,
         ]);
     }
 
@@ -27,7 +27,7 @@ class ServiceRequest extends FormRequest
             'description' => 'nullable|string',
             'duration' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
-            'masterId' => 'nullable|integer|exists:masters,id'
+            'masterId' => 'nullable|integer|exists:masters,id',
         ];
     }
 

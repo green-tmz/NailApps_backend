@@ -22,18 +22,21 @@ class ClientService implements ClientServiceInterface
     public function getAllClients(): AnonymousResourceCollection
     {
         $clients = $this->clientRepository->getAllWithUser();
+
         return ClientResource::collection($clients);
     }
 
     public function createClient(ClientRequest $request): ClientResource
     {
         $client = $this->clientRepository->create($request->validated());
+
         return new ClientResource($client);
     }
 
     public function getClientById(int $id): ClientResource
     {
         $client = $this->clientRepository->getByIdWithUser($id);
+
         return new ClientResource($client);
     }
 
@@ -41,6 +44,7 @@ class ClientService implements ClientServiceInterface
     {
         $client = $this->clientRepository->getByIdWithUser($id);
         $updatedClient = $this->clientRepository->update($client, $request->validated());
+
         return new ClientResource($updatedClient);
     }
 
@@ -51,6 +55,7 @@ class ClientService implements ClientServiceInterface
             return ['message' => 'Ошибка удаления клиента'];
         };
         $this->clientRepository->delete($client);
+
         return ['message' => 'Клиент успешно удален'];
     }
 }

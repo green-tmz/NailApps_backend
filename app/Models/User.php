@@ -3,25 +3,28 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Modules\Appointment\Models\Appointment;
+use App\HasPhoto;
 use App\Modules\Client\Models\Client;
 use App\Modules\Master\Models\Master;
-use App\Modules\Material\Models\Material;
-use App\Modules\Material\Models\MaterialUsage;
-use App\Modules\Service\Models\Service;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property mixed $id
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasRoles, HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use HasRoles;
+    use HasApiTokens;
+    use HasPhoto;
 
     protected $guard_name = 'web';
 
@@ -72,18 +75,13 @@ class User extends Authenticatable
         return $this->hasOne(Master::class);
     }
 
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
-
-    public function isMaster(): bool
-    {
-        return $this->role === 'master';
-    }
-
-    public function isClient(): bool
-    {
-        return $this->role === 'client';
-    }
+    //    public function isAdmin(): bool
+    //    {
+    //        return $this->role === 'admin';
+    //    }
+    //
+    //    public function isMaster(): bool
+    //    {
+    //        return $this->role === 'master';
+    //    }
 }

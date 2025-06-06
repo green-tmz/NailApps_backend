@@ -8,7 +8,6 @@ use Illuminate\Support\Collection;
 
 class MasterRepository implements MasterRepositoryInterface
 {
-
     public function getAllWithRelations(): Collection
     {
         return Master::with(['user', 'specializations', 'services'])->get();
@@ -27,6 +26,7 @@ class MasterRepository implements MasterRepositoryInterface
     public function update(Master $master, array $data): Master
     {
         $master->update($data);
+
         return $master;
     }
 
