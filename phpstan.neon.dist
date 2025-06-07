@@ -28,4 +28,4 @@ parameters:
         - ./app/Modules/Service/Tests
         - ./app/Modules/Settings/Tests
         - ./app/Modules/Specialization/Tests
-        - ./app/Modules/Specialization/Tests
+        - ./app/Modules/Appointment/Tests

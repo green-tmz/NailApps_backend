@@ -73,7 +73,8 @@
         "all": [
             "@format",
             "@analyze",
-            "@rector"
+            "@rector",
+            "@test"
         ],
         "analyze": "vendor/bin/phpstan analyse app --memory-limit=-1",
         "format": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --using-cache=no --allow-risky=yes",
