@@ -10,11 +10,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class MasterService implements MasterServiceInterface
 {
-    private MasterRepositoryInterface $masterRepository;
-
-    public function __construct(MasterRepositoryInterface $masterRepository)
+    public function __construct(private readonly MasterRepositoryInterface $masterRepository)
     {
-        $this->masterRepository = $masterRepository;
     }
 
     public function getAllMasters(): AnonymousResourceCollection

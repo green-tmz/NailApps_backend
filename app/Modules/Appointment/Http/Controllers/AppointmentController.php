@@ -15,19 +15,19 @@ class AppointmentController
         return AppointmentResource::collection($appointments);
     }
 
-    public function store(AppointmentRequest $request)
+    public function store(AppointmentRequest $request): AppointmentResource
     {
         $appointment = Appointment::create($request->validated());
 
         return new AppointmentResource($appointment->load(['client.user', 'master.user', 'service']));
     }
 
-    public function show(Appointment $appointment)
+    public function show(Appointment $appointment): AppointmentResource
     {
         return new AppointmentResource($appointment->load(['client.user', 'master.user', 'service']));
     }
 
-    public function update(AppointmentRequest $request, Appointment $appointment)
+    public function update(AppointmentRequest $request, Appointment $appointment): AppointmentResource
     {
         $appointment->update($request->validated());
 

@@ -3,7 +3,7 @@
 use App\Modules\Master\Http\Controllers\MasterController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/masters', [MasterController::class, 'index']);
     Route::post('/masters', [MasterController::class, 'store']);
     Route::get('/masters/{master}', [MasterController::class, 'show']);

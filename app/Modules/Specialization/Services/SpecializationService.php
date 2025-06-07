@@ -10,11 +10,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SpecializationService implements SpecializationServiceInterface
 {
-    private SpecializationRepositoryInterface $specializationRepository;
-
-    public function __construct(SpecializationRepositoryInterface $specializationRepository)
+    public function __construct(private readonly SpecializationRepositoryInterface $specializationRepository)
     {
-        $this->specializationRepository = $specializationRepository;
     }
 
     public function getAllSpecializations(): AnonymousResourceCollection

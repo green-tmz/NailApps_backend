@@ -2,6 +2,7 @@
 
 namespace App\Modules\Master\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Modules\Master\Http\Requests\MasterRequest;
 use App\Modules\Master\Http\Resources\MasterResource;
 use App\Modules\Master\Interfaces\MasterServiceInterface;
@@ -9,19 +10,16 @@ use App\Modules\Master\Models\Master;
 
 class MasterController
 {
-    private MasterServiceInterface $masterService;
-
-    public function __construct(MasterServiceInterface $masterService)
+    public function __construct(private readonly MasterServiceInterface $masterService)
     {
-        $this->masterService = $masterService;
     }
 
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return $this->masterService->getAllMasters();
     }
 
-    public function store(MasterRequest $request)
+    public function store(MasterRequest $request): MasterResource
     {
         $master = Master::create($request->validated());
 
@@ -36,12 +34,12 @@ class MasterController
         return new MasterResource($master->load(['user', 'specializations', 'services']));
     }
 
-    public function show(Master $master)
+    public function show(Master $master): MasterResource
     {
         return new MasterResource($master->load(['user', 'specializations', 'services']));
     }
 
-    public function update(MasterRequest $request, Master $master)
+    public function update(MasterRequest $request, Master $master): MasterResource
     {
         $master->update($request->validated());
 

@@ -2,11 +2,13 @@
 
 namespace App\Modules\Master\Models;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Appointment\Models\Appointment;
+use App\Modules\Master\Database\Factories\MasterFactory;
 use App\Modules\Schedule\Models\Schedule;
 use App\Modules\Service\Models\Service;
 use App\Modules\Specialization\Models\Specialization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,11 +20,22 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Master extends Model
 {
+    /** @use HasFactory<MasterFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'experience',
         'description',
     ];
+
+    /**
+     * @return MasterFactory
+     */
+    protected static function newFactory(): MasterFactory
+    {
+        return MasterFactory::new();
+    }
 
     public function user(): BelongsTo
     {

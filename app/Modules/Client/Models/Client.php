@@ -2,9 +2,9 @@
 
 namespace App\Modules\Client\Models;
 
-use App\Models\User;
+use App\Modules\Auth\Models\User;
 use App\Modules\Appointment\Models\Appointment;
-use Database\Factories\ClientFactory;
+use App\Modules\Client\Database\Factories\ClientFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +37,12 @@ class Client extends Model
         'preferences' => 'array',
         'birth_date' => 'date',
     ];
+
+
+    protected static function newFactory(): ClientFactory
+    {
+        return ClientFactory::new();
+    }
 
     public function user(): BelongsTo
     {

@@ -39,7 +39,7 @@ class ServiceRepository implements ServiceRepositoryInterface
         $service->delete();
     }
 
-    public function getBySpecialization(int $id)
+    public function getBySpecialization(int $id): void
     {
         // TODO: реализовать связь
     }

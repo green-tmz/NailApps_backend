@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    public function up()
+    public function up(): void
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('materials', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
@@ -19,7 +19,7 @@ return new class () extends Migration {
         });
 
         // Таблица связи материалов и услуг
-        Schema::create('material_service', function (Blueprint $table) {
+        Schema::create('material_service', function (Blueprint $table): void {
             $table->foreignId('material_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->integer('quantity_used')->default(1);
@@ -27,7 +27,7 @@ return new class () extends Migration {
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('material_service');
         Schema::dropIfExists('materials');

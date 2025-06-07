@@ -34,8 +34,12 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
+            "Database\\Seeders\\": "database/seeders/",
+            "Modules\\": "app/Modules/"
+        },
+        "classmap": [
+            "app/Modules/"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -67,8 +71,8 @@
             "@php artisan test"
         ],
         "all": [
-            "@analyze",
             "@format",
+            "@analyze",
             "@rector"
         ],
         "analyze": "vendor/bin/phpstan analyse app --memory-limit=-1",

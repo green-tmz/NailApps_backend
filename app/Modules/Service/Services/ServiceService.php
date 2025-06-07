@@ -2,6 +2,7 @@
 
 namespace App\Modules\Service\Services;
 
+use Exception;
 use App\Modules\Service\Http\Requests\ServiceRequest;
 use App\Modules\Service\Http\Resources\ServiceResource;
 use App\Modules\Service\Interfaces\ServiceRepositoryInterface;
@@ -11,14 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class ServiceService implements ServiceServiceInterface
 {
-    private ServiceRepositoryInterface $serviceRepository;
-
     /**
      * @param ServiceRepositoryInterface $serviceRepository
      */
-    public function __construct(ServiceRepositoryInterface $serviceRepository)
+    public function __construct(private readonly ServiceRepositoryInterface $serviceRepository)
     {
-        $this->serviceRepository = $serviceRepository;
     }
 
     /**
@@ -34,7 +32,7 @@ class ServiceService implements ServiceServiceInterface
     /**
      * @param ServiceRequest $request
      * @return ServiceResource
-     * @throws \Exception
+     * @throws Exception
      */
     public function createService(ServiceRequest $request): ServiceResource
     {
@@ -48,7 +46,7 @@ class ServiceService implements ServiceServiceInterface
             DB::commit();
 
             return new ServiceResource($service);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
 
             throw $e;
