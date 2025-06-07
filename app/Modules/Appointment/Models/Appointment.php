@@ -5,7 +5,7 @@ namespace App\Modules\Appointment\Models;
 use App\Modules\Client\Models\Client;
 use App\Modules\Master\Models\Master;
 use App\Modules\Service\Models\Service;
-use Database\Factories\Modules\Appointment\Database\Factories\AppointmentFactory;
+use App\Modules\Specialization\Database\Factories\AppointmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,6 +32,14 @@ class Appointment extends Model
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
+
+    /**
+     * @return AppointmentFactory
+     */
+    protected static function newFactory(): AppointmentFactory
+    {
+        return AppointmentFactory::new();
+    }
 
     public function client(): BelongsTo
     {

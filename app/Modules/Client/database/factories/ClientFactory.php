@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Modules\Client\Database\Factories;
 
 use App\Modules\Auth\Models\User;
 use App\Modules\Client\Models\Client;
@@ -13,7 +13,7 @@ class ClientFactory extends Factory
 {
     protected $model = Client::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'user_id' => User::factory(),
@@ -35,7 +35,7 @@ class ClientFactory extends Factory
     /**
      * Состояние для клиента без необязательных полей
      */
-    public function minimal()
+    public function minimal(): ClientFactory|Factory
     {
         return $this->state(fn (array $attributes): array => [
             'phone' => null,
@@ -51,7 +51,7 @@ class ClientFactory extends Factory
     /**
      * Состояние для клиента с конкретным пользователем
      */
-    public function forUser(User $user)
+    public function forUser(User $user): ClientFactory|Factory
     {
         return $this->state(fn (array $attributes): array => [
             'user_id' => $user->id,

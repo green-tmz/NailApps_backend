@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Auth\Tests;
+namespace Feature;
 
 use App\Modules\Auth\Models\User;
 use App\Modules\Auth\Repositories\AuthRepository;
