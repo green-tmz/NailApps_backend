@@ -24,7 +24,6 @@ return [
          */
 
         'role' => Spatie\Permission\Models\Role::class,
-
     ],
 
     'table_names' => [

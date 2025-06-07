@@ -2,7 +2,7 @@
 
 namespace App\Modules\Master\Models;
 
-use App\Modules\Auth\Models\User;
+use App\Models\User;
 use App\Modules\Appointment\Models\Appointment;
 use App\Modules\Master\Database\Factories\MasterFactory;
 use App\Modules\Schedule\Models\Schedule;

@@ -3,7 +3,7 @@
 namespace Feature;
 
 use Faker\Factory;
-use App\Modules\Auth\Models\User;
+use App\Models\User;
 use App\Modules\Client\Models\Client;
 use App\Modules\Client\Repositories\ClientRepository;
 use Carbon\Carbon;

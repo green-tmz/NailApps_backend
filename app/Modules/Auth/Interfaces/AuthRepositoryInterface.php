@@ -2,7 +2,7 @@
 
 namespace App\Modules\Auth\Interfaces;
 
-use App\Modules\Auth\Models\User;
+use App\Models\User;
 use App\Modules\Master\Models\Master;
 
 interface AuthRepositoryInterface

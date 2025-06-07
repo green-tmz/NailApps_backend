@@ -2,7 +2,7 @@
 
 namespace Feature;
 
-use App\Modules\Auth\Models\User;
+use App\Models\User;
 use App\Modules\Client\Models\Client;
 use Carbon\Carbon;
 use Faker\Factory;
