@@ -30,6 +30,7 @@ class RegisterResource extends JsonResource
                 "email" => $this->user->email,
                 "phone" => $this->user->phone,
                 'role' => $this->user->getRoleNames()->first(),
+                'permissions' => $this->user->getAllPermissions()->pluck('name'),
                 'specialization' => SpecializationResource::collection($this->specializations),
             ],
         ];
