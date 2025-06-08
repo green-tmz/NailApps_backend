@@ -2,6 +2,8 @@
 
 namespace App\Modules\Specialization\Http\Controllers;
 
+use App\Modules\Specialization\Http\Requests\SpecializationUpdateRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Modules\Specialization\Http\Resources\SpecializationResource;
 use App\Modules\Specialization\Http\Requests\SpecializationRequest;
@@ -28,12 +30,12 @@ class SpecializationController
         return $this->specializationService->getSpecializationById($id);
     }
 
-    public function update(SpecializationRequest $request, int $id): SpecializationResource
+    public function update(SpecializationUpdateRequest $request, int $id): SpecializationResource
     {
         return $this->specializationService->updateSpecialization($request, $id);
     }
 
-    public function destroy(int $id): array
+    public function destroy(int $id): JsonResponse
     {
         return $this->specializationService->deleteSpecialization($id);
     }

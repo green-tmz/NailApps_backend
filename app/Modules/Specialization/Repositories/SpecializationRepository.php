@@ -18,9 +18,9 @@ class SpecializationRepository implements SpecializationRepositoryInterface
         return Specialization::create($data);
     }
 
-    public function getByIdWithServices(int $id): Specialization
+    public function getById(int $id): Specialization
     {
-        return Specialization::with('services')->findOrFail($id);
+        return Specialization::with('services', 'masters')->findOrFail($id);
     }
 
     public function update(Specialization $specialization, array $data): Specialization
