@@ -23,10 +23,10 @@ class ClientResource extends JsonResource
             'id' => $this->id,
             'phone' => $this->phone,
             'email' => $this->email,
-            'firstName' => $this->first_name,
-            'lastName' => $this->last_name,
-            'secondName' => $this->second_name,
-            'birthDate' => Carbon::parse($this->birth_date)->format("Y-m-d"),
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'second_name' => $this->second_name,
+            'birth_date' => Carbon::parse($this->birth_date)->format("Y-m-d"),
             'notes' => $this->notes,
         ];
     }
