@@ -9,7 +9,7 @@ interface SpecializationRepositoryInterface
 {
     public function getAllWithServices(): Collection;
     public function create(array $data): Specialization;
-    public function getByIdWithServices(int $id): Specialization;
+    public function getById(int $id): Specialization;
     public function update(Specialization $specialization, array $data): Specialization;
     public function delete(Specialization $specialization): void;
 }
