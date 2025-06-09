@@ -4,7 +4,9 @@ namespace App\Modules\Service\Models;
 
 use App\Modules\Appointment\Models\Appointment;
 use App\Modules\Master\Models\Master;
+use App\Modules\Service\Database\Factories\ServiceFactory;
 use App\Modules\Specialization\Models\Specialization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Service extends Model
 {
+    /** @use HasFactory<ServiceFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'specialization_id',
         'name',
@@ -23,6 +28,11 @@ class Service extends Model
         'duration',
         'price',
     ];
+
+    protected static function newFactory(): ServiceFactory
+    {
+        return ServiceFactory::new();
+    }
 
     public function specialization(): BelongsTo
     {

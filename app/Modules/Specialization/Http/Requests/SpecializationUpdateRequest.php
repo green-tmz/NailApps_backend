@@ -3,7 +3,6 @@
 namespace App\Modules\Specialization\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class SpecializationUpdateRequest extends FormRequest
 {
