@@ -18,6 +18,7 @@ class Specialization extends Model
     protected $fillable = [
         'name',
         'description',
+        'service'
     ];
 
     /**

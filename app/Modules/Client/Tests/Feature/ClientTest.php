@@ -7,14 +7,12 @@ use App\Modules\Client\Models\Client;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Sanctum\HasApiTokens;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
     use RefreshDatabase;
-    use HasApiTokens;
 
     #[Test]
     public function testIndex(): void
@@ -60,12 +58,12 @@ class ClientTest extends TestCase
 
         $response->assertJsonFragment([
             'id' => $client->id,
-            'firstName' => $client->first_name,
+            'first_name' => $client->first_name,
             'phone' => $client->phone,
             'email' => $client->email,
-            'lastName' => $client->last_name,
-            'secondName' => $client->second_name,
-            'birthDate' => Carbon::parse($client->birth_date)->format("Y-m-d"),
+            'last_name' => $client->last_name,
+            'second_name' => $client->second_name,
+            'birth_date' => Carbon::parse($client->birth_date)->format("Y-m-d"),
             'notes' => $client->notes,
         ]);
 
@@ -113,10 +111,12 @@ class ClientTest extends TestCase
 
         $response->assertJsonFragment([
             'id' => $updatedClient->id,
-            'firstName' => $updatedClient->first_name,
-            'lastName' => $updatedClient->last_name,
-            'phone' => $updatedClient->phone,
-            'email' => $updatedClient->email,
+            'first_name' => $updatedClient['first_name'],
+            'last_name' => $updatedClient['last_name'],
+            'phone' => $updatedClient['phone'],
+            'email' => $updatedClient['email'],
+            'birth_date' => Carbon::parse($updatedClient['birth_date'])->format("Y-m-d"),
+            'notes' => $updatedClient['notes'],
         ]);
 
         $this->assertDatabaseHas('clients', [
@@ -125,6 +125,8 @@ class ClientTest extends TestCase
             'last_name' => $updateData['last_name'],
             'phone' => $updateData['phone'],
             'email' => $updateData['email'],
+            'birth_date' => $updateData['birth_date'],
+            'notes' => $updateData['notes'],
         ]);
     }
 
