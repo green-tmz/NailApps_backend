@@ -9,6 +9,7 @@ use App\Modules\Service\Interfaces\ServiceRepositoryInterface;
 use App\Modules\Service\Interfaces\ServiceServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 readonly class ServiceService implements ServiceServiceInterface
@@ -65,6 +66,12 @@ readonly class ServiceService implements ServiceServiceInterface
     public function deleteService(int $id): JsonResponse
     {
         $service = $this->serviceRepository->getByIdWithSpecialization($id);
+        if ($service->master->first()->user->id != Auth::user()->id) {
+            return response()->json([
+                'message' => "Нельзя удалить услугу, так как она не ваша",
+                'code' => 403
+            ]);
+        }
         $this->serviceRepository->delete($service);
 
         return response()->json([
