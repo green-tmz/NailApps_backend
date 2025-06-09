@@ -39,7 +39,7 @@ class Service extends Model
         return $this->belongsTo(Specialization::class);
     }
 
-    public function masters(): BelongsToMany
+    public function master(): BelongsToMany
     {
         return $this->belongsToMany(Master::class, 'master_service');
     }

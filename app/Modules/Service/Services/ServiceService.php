@@ -7,21 +7,19 @@ use App\Modules\Service\Http\Requests\ServiceRequest;
 use App\Modules\Service\Http\Resources\ServiceResource;
 use App\Modules\Service\Interfaces\ServiceRepositoryInterface;
 use App\Modules\Service\Interfaces\ServiceServiceInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
-class ServiceService implements ServiceServiceInterface
+readonly class ServiceService implements ServiceServiceInterface
 {
     /**
      * @param ServiceRepositoryInterface $serviceRepository
      */
-    public function __construct(private readonly ServiceRepositoryInterface $serviceRepository)
+    public function __construct(private ServiceRepositoryInterface $serviceRepository)
     {
     }
 
-    /**
-     * @return AnonymousResourceCollection
-     */
     public function getAllServices(): AnonymousResourceCollection
     {
         $services = $this->serviceRepository->getAllWithSpecialization();
@@ -29,11 +27,6 @@ class ServiceService implements ServiceServiceInterface
         return ServiceResource::collection($services);
     }
 
-    /**
-     * @param ServiceRequest $request
-     * @return ServiceResource
-     * @throws Exception
-     */
     public function createService(ServiceRequest $request): ServiceResource
     {
         $validData = $request->validated();
@@ -53,10 +46,6 @@ class ServiceService implements ServiceServiceInterface
         }
     }
 
-    /**
-     * @param int $id
-     * @return ServiceResource
-     */
     public function getServiceById(int $id): ServiceResource
     {
         $service = $this->serviceRepository->getByIdWithSpecialization($id);
@@ -64,11 +53,6 @@ class ServiceService implements ServiceServiceInterface
         return new ServiceResource($service);
     }
 
-    /**
-     * @param ServiceRequest $request
-     * @param int $id
-     * @return ServiceResource
-     */
     public function updateService(ServiceRequest $request, int $id): ServiceResource
     {
         $service = $this->serviceRepository->getByIdWithSpecialization($id);
@@ -78,24 +62,21 @@ class ServiceService implements ServiceServiceInterface
         return new ServiceResource($updateService);
     }
 
-    /**
-     * @param int $id
-     * @return string[]
-     */
-    public function deleteService(int $id): array
+    public function deleteService(int $id): JsonResponse
     {
         $service = $this->serviceRepository->getByIdWithSpecialization($id);
         $this->serviceRepository->delete($service);
 
-        return ['message' => 'Услуга успешно удалена'];
+        return response()->json([
+            'message' => 'Услуга успешно удалена',
+            'code' => 200
+        ]);
     }
 
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function getBySpecialization(int $id): void
+    public function getBySpecializationId(int $id): AnonymousResourceCollection
     {
-        // TODO: Implement getBySpecialization() method.
+        $services = $this->serviceRepository->getBySpecializationId($id);
+
+        return ServiceResource::collection($services);
     }
 }

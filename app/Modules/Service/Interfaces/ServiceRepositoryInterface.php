@@ -13,4 +13,5 @@ interface ServiceRepositoryInterface
     public function getByIdWithSpecialization(int $id): Service;
     public function update(Service $service, array $data): Service;
     public function delete(Service $service): void;
+    public function getBySpecializationId(int $id): Collection;
 }

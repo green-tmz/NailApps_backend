@@ -13,7 +13,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         return Service::where('master_service.master_id', '=', Auth::user()->id)
             ->join('master_service', 'services.id', '=', 'master_service.service_id')
-            ->with('specialization')
+            ->with(['specialization', 'master.user'])
             ->get();
     }
 
@@ -39,14 +39,17 @@ class ServiceRepository implements ServiceRepositoryInterface
         $service->delete();
     }
 
-    public function getBySpecialization(int $id): void
+    public function getBySpecializationId(int $id): Collection
     {
-        // TODO: реализовать связь
+        return Service::where('specialization_id', '=', $id)
+            ->join('master_service', 'services.id', '=', 'master_service.service_id')
+            ->with(['specialization', 'master.user'])
+            ->get();
     }
 
     public function attachMaster(Service $service, int $id): Service
     {
-        $service->masters()->attach($id);
+        $service->master()->attach($id);
 
         return $service;
     }

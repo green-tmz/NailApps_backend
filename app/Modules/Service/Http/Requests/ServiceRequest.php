@@ -15,14 +15,14 @@ class ServiceRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'masterId' => Auth::user()->id,
+            'masterId' => Auth::user()->master->id,
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'specialization_id' => 'required|exists:specializations,id',
+            'specialization_id' => 'required|integer|exists:specializations,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'duration' => 'required|integer|min:1',
