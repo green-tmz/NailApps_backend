@@ -2,6 +2,7 @@
 
 namespace App\Modules\Service\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Modules\Service\Http\Resources\ServiceResource;
 use App\Modules\Service\Http\Requests\ServiceRequest;
@@ -36,12 +37,13 @@ class ServiceController
         return $this->serviceService->updateService($request, $id);
     }
 
-    public function destroy(int $id): array
+    public function destroy(int $id): JsonResponse
     {
         return $this->serviceService->deleteService($id);
     }
 
-    public function getBySpecialization(int $id): void
+    public function getBySpecializationId(int $id): AnonymousResourceCollection
     {
+        return $this->serviceService->getBySpecializationId($id);
     }
 }

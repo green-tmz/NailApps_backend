@@ -8,28 +8,35 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @property mixed $id
  * @property mixed $specialization
- * @property mixed $masters
  * @property mixed $name
  * @property mixed $description
  * @property mixed $duration
  * @property mixed $price
  * @property mixed $created_at
  * @property mixed $updated_at
+ * @property mixed $master
  */
 class ServiceResource extends JsonResource
 {
     public function toArray($request): array
     {
+        $master = $this->master->first();
+
         return [
             'id' => $this->id,
-            'specialization' => new SpecializationResource($this->specialization),
-            'master' => $this->masters,
             'name' => $this->name,
             'description' => $this->description,
             'duration' => $this->duration,
             'price' => $this->price,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'specialization' => new SpecializationResource($this->specialization),
+            'master' => [
+                'id' => $master->user->id,
+                'first_name' => $master->user->first_name,
+                'last_name' => $master->user->last_name,
+                'second_name' => $master->user->second_name,
+                'phone' => $master->user->phone,
+                'email' => $master->user->email,
+            ]
         ];
     }
 }

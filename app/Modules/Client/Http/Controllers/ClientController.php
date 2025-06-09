@@ -8,9 +8,9 @@ use App\Modules\Client\Http\Requests\ClientRequest;
 use App\Modules\Client\Http\Requests\ClientUpdateRequest;
 use App\Modules\Client\Interfaces\ClientServiceInterface;
 
-class ClientController
+readonly class ClientController
 {
-    public function __construct(private readonly ClientServiceInterface $clientService)
+    public function __construct(private ClientServiceInterface $clientService)
     {
     }
 

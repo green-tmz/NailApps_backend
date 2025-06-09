@@ -69,7 +69,7 @@ return [
         'routes' => 'routes',
         'migrations' => 'database/migrations',
         'seeds' => 'database/seeds',
-        'Factories' => 'database/Factories',
+        'factories' => 'database/factories',
         'helpers' => '',
     ],
 ];

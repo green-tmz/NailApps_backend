@@ -6,9 +6,6 @@ use App\Modules\Service\Models\Service;
 use App\Modules\Specialization\Models\Specialization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Service>
- */
 class ServiceFactory extends Factory
 {
     protected $model = Service::class;
@@ -16,7 +13,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'specialization_id' => Specialization::factory(),
+            'specialization_id' => Specialization::factory()->create(),
             'name' => $this->faker->word,
             'description' => $this->faker->text,
             'duration' => $this->faker->numberBetween(15, 120),
